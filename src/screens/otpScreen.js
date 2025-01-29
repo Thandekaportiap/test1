@@ -1,7 +1,16 @@
+
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions } from "react-native";
-import { Appbar } from "react-native-paper";
-import Svg, { Circle, Defs, ClipPath, Rect } from "react-native-svg";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+  ActivityIndicator,
+} from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const EnterOTPScreen = () => {
   const [otp, setOtp] = useState(["", "", "", ""]);
@@ -14,32 +23,27 @@ const EnterOTPScreen = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header1}>
-        {/* SVG Half-Circle */}
-        <Svg height="200" width={Dimensions.get("window").width} style={styles.svgContainer}>
-          <Defs>
-            <ClipPath id="clip">
-              <Rect x="0" y="100" width={Dimensions.get("window").width} height="100" />
-            </ClipPath>
-          </Defs>
-          <Circle cx={Dimensions.get("window").width / 2} cy="0" r="200" fill="#008f99" clipPath="url(#clip)" />
-        </Svg>
-
-        {/* Appbar */}
-        <Appbar.Header style={styles.header}>
-          <Appbar.BackAction
-            onPress={() => console.log("Back Pressed")}
-            theme={{ colors: { primary: "#fff" } }}
-          />
-          <Appbar.Content
-            title="Enter OTP"
-            theme={{ colors: { primary: "#fff" } }}
-          />
-        </Appbar.Header>
-
-        <Text style={styles.subheaderText}>
-          Please enter the OTP sent to {"\n"}your email
-        </Text>
+      {/* Header Section */}
+      <View style={styles.header}>
+        <LinearGradient
+          colors={["#00d5e3", "#009ea9"]}
+          style={styles.beforeElement}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+        />
+        <LinearGradient
+          colors={["#00d5e3", "#009ea9"]}
+          style={styles.afterElement}
+          start={{ x: 1, y: 0 }}
+          end={{ x: 0, y: 1 }}
+        />
+        <View style={styles.headerContent}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Ionicons name="chevron-back" size={24} color="#ffffff" />
+          </TouchableOpacity>
+          <Text style={styles.title}>Enter OTP</Text>
+        </View>
+        <Text style={styles.subtitle}>Please enter the code we just sent {"\n"} to your email</Text>
       </View>
 
       <View style={styles.content}>
@@ -58,7 +62,7 @@ const EnterOTPScreen = () => {
           ))}
         </View>
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("HomeTabs")}>
           <Text style={styles.buttonText}>Verify</Text>
         </TouchableOpacity>
 
@@ -75,33 +79,58 @@ const EnterOTPScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
-  },
-  header1: {
-    backgroundColor: "#008f99",
-    borderBottomLeftRadius: 89,
-    borderBottomRightRadius: 89,
-    paddingBottom: 20,
-  },
-  svgContainer: {
-    position: "absolute",
-    top: -15,
-    left: 0,
-    right: 0,
+    backgroundColor: "#f5fafd",
   },
   header: {
-    backgroundColor: "transparent",
-    elevation: 0,
+    position: "relative",
+    justifyContent: "flex-start",
+    marginBottom: 10,
+    height: 180,
+    width: "100%",
   },
-  subheaderText: {
-    color: "#fff",
+  beforeElement: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    height: 180,
+    width: "50%",
+    borderBottomLeftRadius: 100,
+  },
+  afterElement: {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    height: 180,
+    width: "50%",
+    borderBottomRightRadius: 100,
+  },
+  headerContent: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginHorizontal: 10,
+    marginTop: 30,
+    zIndex: 1,
+  },
+  title: {
+    fontSize: 26,
+    fontWeight: "normal",
+    color: "#ffffff",
+    marginLeft: 10,
+    textShadowColor: "#00000050",
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 2,
+  },
+  subtitle: {
     fontSize: 16,
-    fontWeight: "600",
-    marginLeft: 40,
+    color: "#ffffff",
+    marginLeft: 45,
     marginTop: 10,
+    textShadowColor: "#00000050",
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 2,
   },
   content: {
-    marginTop: 65,
+    marginTop: 40,
     alignItems: "center",
   },
   email: {

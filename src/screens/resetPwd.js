@@ -27,6 +27,7 @@ const ResetPasswordScreen = ({ navigation }) => {
     setTimeout(() => {
       setLoading(false);
       Alert.alert("Success", "Password has been reset.");
+      navigation.navigate("OTPScreen");
     }, 2000); // Simulating network delay
   };
 
@@ -103,6 +104,7 @@ const ResetPasswordScreen = ({ navigation }) => {
           style={[styles.button, loading && styles.buttonDisabled]}
           onPress={handleSendCode}
           disabled={loading}
+          
         >
           {loading ? (
             <ActivityIndicator color="#fff" />

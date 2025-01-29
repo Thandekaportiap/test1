@@ -45,10 +45,12 @@
     "react-native-vector-icons": "^10.2.0",
     "react-native-web": "^0.19.13",
     "sweetalert2": "^11.15.10",
-    "expo-secure-store": "~14.0.1"
+    "expo-secure-store": "~14.0.1",
+    "expo-checkbox": "~4.0.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "typescript": "^5.3.3"
   },
   "private": true
 }

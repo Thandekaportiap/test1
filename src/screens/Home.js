@@ -86,11 +86,11 @@ const HomeScreen = () => {
               <Icon name="clipboard-text" size={24} color="#58b5bb" />
               <Text style={styles.optionText}>Daily Reports</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.optionCard}>
+            <TouchableOpacity style={styles.optionCard} onPress={() => navigation.navigate("Homework")}>
               <Icon name="book-open-variant" size={24} color="#58b5bb" />
               <Text style={styles.optionText}>Homework</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.optionCard}>
+            <TouchableOpacity style={styles.optionCard} onPress={() => navigation.navigate("TeacherProfile")}>
               <Icon name="account-group" size={24} color="#58b5bb" />
               <Text style={styles.optionText}>Teachers</Text>
             </TouchableOpacity>
